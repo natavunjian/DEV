@@ -17,28 +17,20 @@ function set_price_from_quantity() {
 
      // if write in product is false (existing product)
      if (writein_product === false) {
-          //hide fields related to write in product
-          SADA.Field("dfi_qty1_10").Hide();
-          SADA.Field("dfi_qty11_50").Hide();
-          SADA.Field("dfi_qty51_100").Hide();
-          SADA.Field("dfi_qty101").Hide(); 
-          SADA.Field("dfi_priceperunit").Hide();
-
-               //set price from product entities
-               if (quant_value > 0 && quant_value < 11) 
-                         setPrice(price, product, "dfi_qty1_10");
-                    else if (quant_value > 10 && quant_value < 51) 
-                         setPrice(price, product, "dfi_qty11_50");
-                    else if (quant_value > 50 && quant_value < 101) 
-                         setPrice(price, product, "dfi_qty51_100");
-                    else if (quant_value > 100)
-                         setPrice(price, product, "dfi_qty101");
-                    else {
-                         alert("Can't have negative or zero quantity!");
-                         quantity.Clear();
-                    }
+          //set price from product entities
+          if (quant_value > 0 && quant_value < 11) 
+                    setPrice(price, product, "dfi_qty1_10");
+               else if (quant_value > 10 && quant_value < 51) 
+                    setPrice(price, product, "dfi_qty11_50");
+               else if (quant_value > 50 && quant_value < 101) 
+                    setPrice(price, product, "dfi_qty51_100");
+               else if (quant_value > 100)
+                    setPrice(price, product, "dfi_qty101");
+               else {
+                    alert("Can't have negative or zero quantity!");
+                    quantity.Clear();
+               }
      }
-
      else if (writein_product === true) {
           if (price.GetValue() != null)
           //set write in product price based on quantity entered 
@@ -55,7 +47,6 @@ function set_price_from_quantity() {
                     quantity.Clear();
                }          
      }
-     
      else {
           return;
      }
@@ -63,4 +54,17 @@ function set_price_from_quantity() {
 
 function setPrice (price, product, quant_field) {
      price.SetValue(SADA.FetchSingleValue("product", quant_field, "productid", product.GetID()));
+}
+
+function clearExistingFields () {
+     var write_in = Xrm.Page.getAttribute("isproductoverridden").getValue();
+
+     //checks to see if product is existing or write in
+     if (write_in === false) {
+          SADA.Field("dfi_qty1_10").Hide();
+          SADA.Field("dfi_qty11_50").Hide();
+          SADA.Field("dfi_qty51_100").Hide();
+          SADA.Field("dfi_qty101").Hide(); 
+          SADA.Field("dfi_priceperunit").Hide();
+     }
 }
