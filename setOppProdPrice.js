@@ -7,6 +7,7 @@ function set_price_from_quantity() {
      var quantity = SADA.Field("quantity");
      var quant_value = SADA.Field("quantity").GetValue();
      var product = SADA.LookupField("productid");
+     var price = SADA.Field("dfi_priceperunit");
      var final_price = SADA.Field("priceperunit");
      var qty1_10 = SADA.Field("dfi_qty1_10").GetValue();
      var qty11_50 = SADA.Field("dfi_qty11_50").GetValue();
@@ -54,6 +55,7 @@ function set_price_from_quantity() {
                     quantity.Clear();
                }          
      }
+     
      else {
           return;
      }
