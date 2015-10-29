@@ -1,0 +1,26 @@
+<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+  <entity name="opportunity" enableprefiltering="true">
+      <attribute name="name" />
+      <attribute name="serpico_signature" />
+      <attribute name="serpico_bidtotal" /> 
+      <attribute name="opportunityid" />
+      <attribute name="serpico_rfbduedate" />
+      <attribute name="serpico_location" />
+      <attribute name="description" />
+      <attribute name="customerneed" />
+      <attribute name="proposedsolution" />
+      <attribute name="serpico_bidid" />
+  <link-entity name="account" from="accountid" to="customerid" visible="false" link-type="outer" alias="account">
+      <attribute name="name" />
+      <attribute name="serpico_branchid" />
+      <attribute name="primarycontactid" />
+      <link-entity name="serpico_branch" from="serpico_branchid" to="serpico_branchid" visible="false" link-type="outer" alias="branch">
+          <attribute name="serpico_branchmanagerid" />
+          <attribute name="serpico_name"/>
+      </link-entity>
+  </link-entity>
+  <filter type="and">
+      <condition attribute="serpico_bidid" operator="eq" value="500062" />
+  </filter>
+  </entity>
+</fetch>
