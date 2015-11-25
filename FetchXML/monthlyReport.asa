@@ -1,0 +1,26 @@
+<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+  <entity name="account" enableprefiltering="true">
+    <attribute name="name" />
+    <attribute name="serpico_branchid" />
+    <attribute name="primarycontactid" />
+    <attribute name="serpico_accountmanagerid" />
+    <attribute name="serpico_managementcompanyid" />
+    <attribute name="primarycontactid" />
+    <link-entity name="serpico_branch" from="serpico_branchid" to="serpico_branchid" visible="false" link-type="outer" alias="branch">
+        <attribute name="serpico_branchmanagerid" />
+        <attribute name="serpico_name"/>
+    </link-entity>
+    <link-entity name="opportunity" from="accountid" to="parentaccountid" visible="false" link-type="outer" alias="bid">
+        <attribute name="statuscode" />
+        <attribute name="serpico_bidid" />
+        <attribute name="proposedsolution" />
+    </link-entity>
+    <link-entity name="serpico_workorder" from="serpico_customerid" to="accountid" visible="false" link-type="outer" alias="wo">
+        <attribute name="createdon" />
+        <attribute name="serpico_workordernumberid" />
+        <attribute name="serpico_datecompleted" />
+        <attribute name="serpico_description" />
+        <attribute name="serpico_workorderresolution" />
+    </link-entity>
+  </entity>
+</fetch>

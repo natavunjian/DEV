@@ -13,7 +13,7 @@ function createOppProd(product_name) {
         if (product_name !== "baseproduct") {
            var child_product = SADA.FetchSingleValue("dfi_productunion", "dfi_childproductid",
                                                                                       "dfi_productunionid", current_field.GetID());
-            product_field.SetSingleValue(child_product, current_field.GetName(), "product");
+           product_field.SetSingleValue(child_product, current_field.GetName(), "product");
         }
         //dec opp prod entity
         var new_opp_product = SADA.CrmObject("opportunityproduct");
@@ -34,8 +34,8 @@ function createOppProd(product_name) {
         new_opp_product.SetDecimalValue("quantity", 1);
         new_opp_product.SetMoneyValue("priceperunit", fPrice);
         new_opp_product.SetMoneyValue("priceperunit_base", fPrice);
-        new_opp_product.SetMoneyValue("new_priceperunit", fPrice);
-        new_opp_product.SetMoneyValue("new_priceperunit_base", fPrice);
+        new_opp_product.SetMoneyValue("dfi_priceperunit", fPrice);
+        new_opp_product.SetMoneyValue("dfi_priceperunit_base", fPrice);
         
         var new_opp_product_id = new_opp_product.Create();
         if(product_name === "baseproduct") {
