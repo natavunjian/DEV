@@ -1,0 +1,8 @@
+function setSubtag() {
+   var subtag = Xrm.Page.data.entity.attributes.get("bstone_subtagid");
+   var subtagText = Xrm.Page.data.entity.attributes.get("bstone_subtag");
+
+   if (subtag.getValue() != null) {
+      subtagText.setValue(subtag.getValue()[0].name);
+  }
+}

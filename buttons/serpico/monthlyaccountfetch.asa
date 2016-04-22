@@ -1,0 +1,54 @@
+<fetch distinct="true" mapping="logical" output-format="xml-platform" version="1.0">
+  <entity enableprefiltering="true" name="account">
+    <attribute name="name"/>
+    <attribute name="serpico_branchid"/>
+    <attribute name="primarycontactid"/>
+    <attribute name="serpico_accountmanager"/>
+    <attribute name="serpico_managementcompanyid"/>
+    <attribute name="primarycontactid"/>
+    <attribute name="accountid"/>
+    <link-entity alias="branch" from="serpico_branchid" link-type="outer" name="serpico_branch" to="serpico_branchid" visible="false">
+      <attribute name="serpico_branchmanagerid"/>
+      <attribute name="serpico_name"/>
+    </link-entity>
+    <link-entity alias="bid" from="parentaccountid" link-type="outer" name="opportunity" to="accountid" visible="false">
+      <attribute name="statuscode"/>
+      <attribute name="serpico_bidid"/>
+      <attribute name="proposedsolution"/>
+      <attribute name="opportunityid"/>
+      <attribute name="modifiedon"/>
+      <attribute name="actualclosedate"/>
+      <filter type="and">
+        <filter type="or">
+            <filter type="or">
+              <condition attribute="statuscode" value="911990005" operator="eq"/>
+              <condition attribute="statuscode" value="911990003" operator="eq"/>
+            </filter>
+            <filter type="and">
+                <condition attribute="statuscode" value="911990006" operator="eq"/>
+                <condition attribute="actualclosedate" operator="this-month"/>
+            </filter>
+        </filter>
+      </filter>
+    </link-entity>
+    <link-entity alias="wo" from="serpico_customerid" link-type="outer" name="serpico_workorder" to="accountid" visible="false">
+      <attribute name="serpico_wocreatedon"/>
+      <attribute name="serpico_workordernumberid"/>
+      <attribute name="serpico_isreportable"/>
+      <attribute name="serpico_datecompleted"/>
+      <attribute name="serpico_description"/>
+      <attribute name="serpico_purchaseorder"/>
+      <attribute name="serpico_workdate"/>
+      <attribute name="serpico_response"/>
+      <filter type="and">
+        <filter type="and">
+          <condition attribute="serpico_isreportable" value="1" operator="eq"/>
+          <condition attribute="serpico_wocreatedon" operator="this-month"/>
+        </filter>
+      </filter>
+    </link-entity>
+    <filter type="and">
+      <condition attribute="name" operator="eq" value="Mesa Verde HOA"/>
+    </filter>
+  </entity>
+</fetch>

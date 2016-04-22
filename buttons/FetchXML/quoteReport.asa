@@ -1,0 +1,34 @@
+<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+  <entity name="quote"  enableprefiltering="true">
+    <attribute name="name" />
+    <attribute name="customerid" />
+    <attribute name="description" />
+    <attribute name="revisionnumber" />
+    <attribute name="statecode" />
+    <attribute name="totalamount" />
+    <attribute name="billto_composite" />
+    <attribute name="shipto_composite" />
+    <attribute name="quoteid" />
+    <attribute name="createdon" />
+    <attribute name="dfi_quotetextboxurl" />
+    <attribute name="dfi_quotetextbox4" />
+    <attribute name="dfi_quotetextbox3" />
+    <attribute name="dfi_quotetextbox2" />
+    <attribute name="dfi_quotetextbox1" />
+    <attribute name="quotenumber" />
+    <attribute name="ownerid" />
+    <order attribute="name" descending="false" />
+    <link-entity name="opportunity" from="opportunityid" to="opportunityid" visible="false" link-type="outer" alias="a_c7e42fd30f07445089e4f7a3d5614cdb">
+      <attribute name="parentcontactid" />
+    </link-entity>
+    <link-entity name="account" from="accountid" to="customerid" visible="false" link-type="outer" alias="a_ce7d47f5258c4f20a6778ef6c718fa3b">
+      <attribute name="address1_composite" />
+      <attribute name="name" />
+      <attribute name="address1_postalcode" />
+      <attribute name="address1_line1" />
+      <attribute name="address1_stateorprovince" />
+      <attribute name="address1_city" />
+    </link-entity>
+  </entity>
+</fetch
+
